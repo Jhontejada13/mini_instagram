@@ -16,15 +16,17 @@ class AlbumRepository extends ServiceEntityRepository{
         parent::__construct($registry, Album::class);
     }
 
+    
+
     /*
     public function findByExampleField($value)
     {
-        //DQL -> Lenguaje propio de doctrine para ejecutar sentencias sql
-        $imagen_repo = $this->getDoctrine()->getRepository(Imagen::class);
-        $dql = "SELECT a FROM App\Entity\Imagen a WHERE a.nombre = 'imagen3'";
-        $query = $imagen_repo->createQuery($dql);
-        $resultset = $query->execute();
-        var_dump($resultset);
+        // DQL -> Lenguaje propio de doctrine para ejecutar sentencias sql
+        // $imagen_repo = $this->getDoctrine()->getRepository(Imagen::class);
+        // $dql = "SELECT a FROM App\Entity\Imagen a WHERE a.nombre = 'imagen3'";
+        // $query = $imagen_repo->createQuery($dql);
+        // $resultset = $query->execute();
+        // var_dump($resultset);
 
         return $this->createQueryBuilder('i')
             ->andWhere('i.exampleField = :val')
