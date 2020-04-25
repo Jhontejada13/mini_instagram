@@ -15,7 +15,6 @@ class PersonaType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $persona = new Persona();
         $builder
             ->add('nombre', TextType::class)
             ->add('apellido', TextType::class)
@@ -33,4 +32,5 @@ class PersonaType extends AbstractType
             'data_class' => Persona::class,
         ]);
     }
+
 }
