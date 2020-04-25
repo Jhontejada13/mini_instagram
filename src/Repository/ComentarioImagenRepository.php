@@ -9,7 +9,7 @@ use Doctrine\Persistence\ManagerRegistry;
 
 
 
-class AlbumRepository extends ServiceEntityRepository{
+class ComentarioImagenRepository extends ServiceEntityRepository{
 
     public function __construct(ManagerRegistry $registry)
     {

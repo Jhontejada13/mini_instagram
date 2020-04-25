@@ -3,6 +3,9 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Common\Collection\Collection;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * Persona
@@ -10,7 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="persona")
  * @ORM\Entity(repositoryClass="App\Repository\PersonaRepository")
  */
-class Persona
+class Persona implements UserInterface
 {
     /**
      * @var int
@@ -101,6 +104,25 @@ class Persona
 
         return $this;
     }
+
+    //Métodos implementados desde UserInterface para cifrado de clave
+    public function getUserName(){
+        return $this->email;
+    }
+
+    public function getSalt(){
+        return null;
+    }
+
+    public function getPassword(){
+        return $this->clave;
+    }
+
+    public function getRoles(){
+        return array('ROLE_USER');
+    }
+
+    public function eraseCredentials(){}
 
 
 }
