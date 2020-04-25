@@ -1,20 +1,45 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HomeController!{% endblock %}
+{% block title %}Hello HomeController!
+{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/wamp64/www/PHP2020/mini_instagram/src/Controller/HomeController.php'|file_link(0) }}">src/Controller/HomeController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/wamp64/www/PHP2020/mini_instagram/templates/home/index.html.twig'|file_link(0) }}">templates/home/index.html.twig</a></code></li>
-    </ul>
-</div>
+	<!--Navbar-->
+	<nav class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar">
+		<div
+			class="container">
+			<!-- Navbar brand -->
+			<a class="navbar-brand grey-text" href="/">Mini Intagram</a>
+			<!-- Collapse button -->
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav" aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+		</div>
+	</nav>
+	<!--Mask-->
+	<!--Mask-->
+	<div id="intro" class="view">
+		<div class="mask rgba-black-strong">
+			<div class="container-fluid d-flex align-items-center justify-content-center h-100">
+				<div class="row d-flex justify-content-center text-center">
+					<div
+						class="col-md-10">
+						<!-- Heading -->
+						<h2 class="display-4 font-weight-bold cyan-text pt-5 mb-2">Mini Instagram</h2>
+						<!-- Divider -->
+						<hr
+						class="hr-light">
+						<!-- Description -->
+						<h4 class="grey-text my-4">Comparte tus fotos, has que el mundo los vea, así podrás hacer que tus momentos sean de todos
+						</h4>
+						<button type="button" class="btn btn-outline-grey">Ingresar<i class="fas fa-book ml-2"></i>
+						</button>
+                        <button type="button" class="btn btn-outline-grey">Registrarse<i class="fas fa-book ml-2"></i>
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--/.Navbar-->
 {% endblock %}
