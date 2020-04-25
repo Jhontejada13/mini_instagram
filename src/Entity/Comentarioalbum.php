@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Comentarioalbum
  *
  * @ORM\Table(name="comentarioalbum", indexes={@ORM\Index(name="fk_comentarioImagen_album", columns={"idAlbum"}), @ORM\Index(name="fk_comentarioImagen_usuario", columns={"idUsuario"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\ComentarioAlbumRepository")
  */
 class Comentarioalbum
 {
