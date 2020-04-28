@@ -3,6 +3,9 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Constraints\Image;
 
 /**
  * Imagen
@@ -37,6 +40,7 @@ class Imagen
 
     /**
      * @var string|null
+     * @Assert\Image(allowLandscape = true, allowPortrait = true, allowSquare = true)
      *
      * @ORM\Column(name="foto", type="string", length=300, nullable=true)
      */
@@ -85,12 +89,12 @@ class Imagen
         return $this;
     }
 
-    public function getFoto(): ?string
+    public function getFoto()
     {
         return $this->foto;
     }
 
-    public function setFoto(?string $foto): self
+    public function setFoto($foto): self
     {
         $this->foto = $foto;
 
