@@ -5,7 +5,11 @@ namespace App\Controller;
 use App\Entity\Imagen;
 use App\Form\ImagenType;
 use App\Repository\ImagenRepository;
+use App\Service\FileUploader;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Asset\Package;
+use Symfony\Component\Asset\VersionStrategy\EmptyVersionStrategy;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -28,13 +32,20 @@ class ImagenController extends AbstractController
     /**
      * @Route("/new", name="imagen_new", methods={"GET","POST"})
      */
-    public function new(Request $request): Response
+    public function new(Request $request, FileUploader $fileUploader): Response
     {
         $imagen = new Imagen();
         $form = $this->createForm(ImagenType::class, $imagen);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $imagenFile = $form->get('foto')->getData();
+            if($imagenFile){
+                $imagenFileName = $fileUploader->cargar($imagenFile);
+                $imagen->setFoto($imagenFileName);
+            }
+
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($imagen);
             $entityManager->flush();
@@ -51,10 +62,15 @@ class ImagenController extends AbstractController
     /**
      * @Route("/{id}", name="imagen_show", methods={"GET"})
      */
-    public function show(Imagen $imagen): Response
+    public function show(Imagen $imagen, FileUploader $fileUploader): Response
     {
+
+        // $rutaImagen = $fileUploader->getDirectorioDestino();
+        $rutaImagen = '/public/fotos/';
+
         return $this->render('imagen/show.html.twig', [
             'imagen' => $imagen,
+            'rutaImagen' => $rutaImagen
         ]);
     }
 
