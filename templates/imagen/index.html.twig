@@ -3,9 +3,10 @@
 {% block title %}Imagen index{% endblock %}
 
 {% block body %}
-    <h1>Imagen index</h1>
+ 
+    <h1 class="container">Imagen index</h1>
 
-    <table class="table">
+    <table class="table container">
         <thead>
             <tr>
                 <th>Id</th>
@@ -27,8 +28,8 @@
                 <td>{{ imagen.idusuario }}</td>
                 <td>{{ imagen.creadoEl ? imagen.creadoEl|date('Y-m-d H:i:s') : '' }}</td>
                 <td>
-                    <a href="{{ path('imagen_show', {'id': imagen.id}) }}">show</a>
-                    <a href="{{ path('imagen_edit', {'id': imagen.id}) }}">edit</a>
+                    <a class="list-group-item list-group-item-action" href="{{ path('imagen_show', {'id': imagen.id}) }}">show</a>
+                    <a class="list-group-item list-group-item-action" href="{{ path('imagen_edit', {'id': imagen.id}) }}">edit</a>
                 </td>
             </tr>
         {% else %}
@@ -39,5 +40,7 @@
         </tbody>
     </table>
 
-    <a href="{{ path('imagen_new') }}">Create new</a>
+    <a class=" container list-group-item list-group-item-action" href="{{ path('imagen_new') }}">Create new</a>
+
+    
 {% endblock %}
