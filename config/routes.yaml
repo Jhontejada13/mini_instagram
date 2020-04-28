@@ -9,3 +9,6 @@ registro:
 imagen:
     path: /imagen
     controller: App\Controller\HomeController::index
+
+
+
