@@ -4,7 +4,7 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
-use Symfony\Common\Collection\Collection;
+use Doctrine\Common\Collections\Collection;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
@@ -41,6 +41,20 @@ class Persona implements UserInterface
     /**
      * @var string
      *
+     * @ORM\Column(name="apodo", type="string", length=50, nullable=false)
+     */
+    private $apodo;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="avatar", type="blob", length=65535, nullable=true)
+     */
+    private $avatar;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="email", type="string", length=250, nullable=false)
      */
     private $email;
@@ -51,6 +65,7 @@ class Persona implements UserInterface
      * @ORM\Column(name="clave", type="string", length=250, nullable=false)
      */
     private $clave;
+    
 
     public function getId(): ?int
     {
@@ -77,6 +92,30 @@ class Persona implements UserInterface
     public function setApellido(string $apellido): self
     {
         $this->apellido = $apellido;
+
+        return $this;
+    }
+
+    public function getApodo(): ?string
+    {
+        return $this->apodo;
+    }
+
+    public function setApodo(string $apodo): self
+    {
+        $this->apodo = $apodo;
+
+        return $this;
+    }
+
+    public function getAvatar()
+    {
+        return $this->avatar;
+    }
+
+    public function setAvatar($avatar): self
+    {
+        $this->avatar = $avatar;
 
         return $this;
     }
