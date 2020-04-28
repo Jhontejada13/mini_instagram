@@ -6,3 +6,6 @@ registro:
     path: /registro
     controller: App\Controller\HomeController::crearPersona
     
+imagen:
+    path: /imagen
+    controller: App\Controller\HomeController::index
