@@ -66,7 +66,7 @@ class ImagenController extends AbstractController
     {
 
         // $rutaImagen = $fileUploader->getDirectorioDestino();
-        $rutaImagen = '/public/fotos/';
+        $rutaImagen = '/fotos/'.$imagen->getFoto();
 
         return $this->render('imagen/show.html.twig', [
             'imagen' => $imagen,
