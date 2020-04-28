@@ -49,6 +49,23 @@ class Album
      */
     private $creadoEl;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Persona", inversedBy="albumes")
+     */
+    private $persona;
+
+    public function getPersona(): ?Persona
+    {
+        return $this->persona;
+    }
+
+    public function setPersona(Persona $persona): self
+    {
+        $this->persona = $persona;
+
+        return $this;
+    }
+
     public function getId(): ?int
     {
         return $this->id;

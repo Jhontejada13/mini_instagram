@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Comentarioimagen
  *
- * @ORM\Table(name="comentarioimagen", indexes={@ORM\Index(name="fk_comentarioImagen_imagen", columns={"idImagen"}), @ORM\Index(name="fk_comentarioImagen_usuario", columns={"idUsuario"})})
+ * @ORM\Table(name="comentarioimagen", indexes={@ORM\Index(name="fk_comentarioImagen_imagen", columns={"idImagen"})})
  * @ORM\Entity(repositoryClass="App\Repository\ComentarioImagenRepository")
  */
 class Comentarioimagen
@@ -35,12 +35,6 @@ class Comentarioimagen
      */
     private $idimagen;
 
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="idUsuario", type="integer", nullable=false)
-     */
-    private $idusuario;
 
     /**
      * @var \DateTime|null
@@ -48,6 +42,23 @@ class Comentarioimagen
      * @ORM\Column(name="creado_el", type="datetime", nullable=true)
      */
     private $creadoEl;
+
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\Persona", inversedBy="comentariosImagen")
+     */
+    private $persona;
+
+    public function getPersona(): ?Persona
+    {
+        return $this->persona;
+    }
+
+    public function setPersona(Persona $persona): self
+    {
+        $this->persona = $persona;
+
+        return $this;
+    }
 
     public function getId(): ?int
     {
@@ -78,17 +89,6 @@ class Comentarioimagen
         return $this;
     }
 
-    public function getIdusuario(): ?int
-    {
-        return $this->idusuario;
-    }
-
-    public function setIdusuario(int $idusuario): self
-    {
-        $this->idusuario = $idusuario;
-
-        return $this;
-    }
 
     public function getCreadoEl(): ?\DateTimeInterface
     {

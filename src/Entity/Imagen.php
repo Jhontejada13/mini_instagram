@@ -10,7 +10,7 @@ use Symfony\Component\Validator\Constraints\Image;
 /**
  * Imagen
  *
- * @ORM\Table(name="imagen", indexes={@ORM\Index(name="fk_imagen_usuario", columns={"idUsuario"})})
+ * @ORM\Table(name="imagen")
  * @ORM\Entity(repositoryClass="App\Repository\ImagenRepository")
  */
 class Imagen
@@ -46,12 +46,6 @@ class Imagen
      */
     private $foto;
 
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="idUsuario", type="integer", nullable=false)
-     */
-    private $idusuario;
 
     /**
      * @var \DateTime|null
@@ -59,6 +53,24 @@ class Imagen
      * @ORM\Column(name="creado_el", type="datetime", nullable=true)
      */
     private $creadoEl;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Persona", inversedBy="imagenes")
+     */
+    private $persona;
+
+    public function getPersona(): ?Persona
+    {
+        return $this->persona;
+    }
+
+    public function setPersona(Persona $persona): self
+    {
+        $this->persona = $persona;
+
+        return $this;
+    }
+
 
     public function getId(): ?int
     {
@@ -101,17 +113,6 @@ class Imagen
         return $this;
     }
 
-    public function getIdusuario(): ?int
-    {
-        return $this->idusuario;
-    }
-
-    public function setIdusuario(int $idusuario): self
-    {
-        $this->idusuario = $idusuario;
-
-        return $this;
-    }
 
     public function getCreadoEl(): ?\DateTimeInterface
     {

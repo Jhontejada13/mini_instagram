@@ -65,7 +65,69 @@ class Persona implements UserInterface
      * @ORM\Column(name="clave", type="string", length=250, nullable=false)
      */
     private $clave;
-    
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Imagen", mappedBy="persona")
+     */
+    private $imagenes;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Imagen", mappedBy="persona")
+     */
+    private $albumes;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\ComentarioAlbum", mappedBy="persona")
+     */
+    private $comentariosAlbum;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\ComentarioImagen", mappedBy="persona")
+     */
+    private $comentariosImagen;
+
+    public function __construct()
+    {
+        $this->imagenes = new ArrayCollection();
+        $this->comentariosAlbum = new ArrayCollection();
+        $this->comentariosImagen = new ArrayCollection();
+        $this->albumes = new ArrayCollection();
+
+    }
+
+    /**
+     * @return Collection|ComantarioImagen[]
+     */
+    public function getComentariosImagen(): Collection
+    {
+        return $this->comentariosImagen;
+    }
+
+
+    /**
+     * @return Collection|ComantarioAlbum[]
+     */
+    public function getComentariosAlbum(): Collection
+    {
+        return $this->comentariosAlbum;
+    }
+
+    /**
+     * @return Collection|Album[]
+     */
+    public function getAlbumnes(): Collection
+    {
+        return $this->albumes;
+    }
+
+    /**
+     * @return Collection|Imagen[]
+     */
+    public function getImagenes(): Collection
+    {
+        return $this->imagenes;
+    }
+
 
     public function getId(): ?int
     {
