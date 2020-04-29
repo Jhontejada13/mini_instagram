@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Imagen;
+use Doctrine\DBAL\Types\ObjectType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
@@ -21,7 +22,6 @@ class ImagenType extends AbstractType
                 'label'=> 'Imagen', 
                 'mapped'=> false
             ])
-            ->add('idusuario', TextType::class)
             ->add('creadoEl', DateTimeType::class)
         ;
     }

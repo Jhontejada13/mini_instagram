@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Agregar un comentario al Album{% endblock %}
+
+{% block body %}
+    <h1>Crear un nuevo Comentario</h1>
+
+    {{ include('comentarioalbum/_form.html.twig') }}
+
+    <a href="{{ path('comentarioalbum_index') }}">back to list</a>
+{% endblock %}

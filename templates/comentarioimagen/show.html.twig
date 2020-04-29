@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Comentarioimagen{% endblock %}
+
+{% block body %}
+    <h1>Comentarioimagen</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ comentarioimagen.id }}</td>
+            </tr>
+            <tr>
+                <th>Descripcion</th>
+                <td>{{ comentarioimagen.descripcion }}</td>
+            </tr>
+            <tr>
+                <th>Idimagen</th>
+                <td>{{ comentarioimagen.idimagen }}</td>
+            </tr>
+            <tr>
+                <th>CreadoEl</th>
+                <td>{{ comentarioimagen.creadoEl ? comentarioimagen.creadoEl|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('comentarioimagen_index') }}">back to list</a>
+
+    <a href="{{ path('comentarioimagen_edit', {'id': comentarioimagen.id}) }}">edit</a>
+
+    {{ include('comentarioimagen/_delete_form.html.twig') }}
+{% endblock %}

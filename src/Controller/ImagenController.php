@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Imagen;
+use App\Entity\Persona;
 use App\Form\ImagenType;
 use App\Repository\ImagenRepository;
 use App\Service\FileUploader;
@@ -34,17 +35,20 @@ class ImagenController extends AbstractController
      */
     public function new(Request $request, FileUploader $fileUploader): Response
     {
-        $imagen = new Imagen();
-        $form = $this->createForm(ImagenType::class, $imagen);
+        $imagen = new Imagen();    //Creo instancia de imagen
+        $persona = new Persona(); //Creo instancia de persona 
+        $form = $this->createForm(ImagenType::class, $imagen);//creo el form
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
 
             $imagenFile = $form->get('foto')->getData();
             if($imagenFile){
-                $imagenFileName = $fileUploader->cargar($imagenFile);
-                $imagen->setFoto($imagenFileName);
+                $imagenFileName = $fileUploader->cargar($imagenFile);//aplico el metodo de cargar la imagen desde el servicio
+                $imagen->setFoto($imagenFileName); //asigno el valor arrojado por el servicio
             }
+
+            $imagen->setPersona($persona); 
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($imagen);
